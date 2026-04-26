@@ -1,11 +1,11 @@
 # Estágio 1: Build
 FROM gradle:8.5-jdk21 AS build
-COPY --chown=gradle:gradle src /home/gradle/src
-WORKDIR /home/gradle/src
-RUN ./gradlew build -x test
+WORKDIR /home/gradle/project
+COPY --chown=gradle:gradle . .
+RUN ./gradlew build -x test --no-daemon
 
 # Estágio 2: Execução
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-jammy
 EXPOSE 8080
-COPY --from=build /home/gradle/src/build/libs/*.jar app.jar
+COPY --from=build /home/gradle/project/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
