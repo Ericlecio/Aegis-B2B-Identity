@@ -1,0 +1,21 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Gradle
+.gradle/
+build/
+
+# Certificados (SEGURANÇA CRÍTICA)
+# Nunca suba sua chave privada!
+src/main/resources/certs/private_key.pem
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Variáveis de Ambiente
+.env
